@@ -18,7 +18,7 @@ default-enabled: true
 > **Skill 版本：** v1.5.0
 > **适用工具：** OpenClaw / Claude Code / Claude Desktop / Hermes / Codex / WorkBuddy / Cherry Studio / Opencode / Kimi Work
 > **更新日期：** 2026-06-06
-> **GitHub 仓库：** https://github.com/lj1270998580-crypto/Agnes-help-skill
+> **GitHub 仓库：** https://github.com/imsancn/agnes-ai-skill
 > **官方平台：** https://platform.agnes-ai.com
 > **官方文档：** https://agnes-ai.com/doc/overview
 > **操作手册：** https://agnes-ai.com/doc/%E5%B8%B8%E7%94%A8%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3
@@ -35,7 +35,7 @@ default-enabled: true
 
 1. 读取 GitHub 仓库最新版本信息：
    ```
-   https://api.github.com/repos/lj1270998580-crypto/Agnes-help-skill/commits?per_page=1
+   https://api.github.com/repos/imsancn/agnes-ai-skill/commits?per_page=1
    ```
 
 2. 比较远程最新 commit 的 `sha` 与本地记录的版本。
@@ -43,11 +43,11 @@ default-enabled: true
 3. 如果检测到更新，**在回复开头提醒用户**：
    > 📢 **本 Skill 有新版本可用！** 建议从 GitHub 获取最新版以获得完整功能和最新接入指南。
    > 
-   > 仓库地址：https://github.com/lj1270998580-crypto/Agnes-help-skill
+   > 仓库地址：https://github.com/imsancn/agnes-ai-skill
    > 
    > 一键更新指令：
    > ```
-   > 请读取并安装 Agnes AI 支持 Skill 最新版：https://raw.githubusercontent.com/lj1270998580-crypto/Agnes-help-skill/main/SKILL.md
+   > 请读取并安装 Agnes AI 支持 Skill 最新版：https://raw.githubusercontent.com/imsancn/agnes-ai-skill/main/SKILL.md
    > ```
 
 4. 如果用户正在使用 HTML 助手或 API 文档，同样提醒检查对应文件是否有更新。
@@ -58,7 +58,7 @@ default-enabled: true
 
 > 本 Skill 是你的 Agnes AI 接入助手。安装后，Agent 会自动理解 Agnes API 的完整信息，帮你完成接入、生成内容、排查问题。
 
-![Agnes Help Skill 教程信息图](https://raw.githubusercontent.com/lj1270998580-crypto/Agnes-help-skill/main/assets/agnes-help-skill-tutorial.png)
+![Agnes Help Skill 教程信息图](https://raw.githubusercontent.com/imsancn/agnes-ai-skill/main/assets/agnes-help-skill-tutorial.png)
 
 ### 一、用 Skill 让 Agent 帮你生图 / 生视频
 
