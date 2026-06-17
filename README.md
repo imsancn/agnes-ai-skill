@@ -15,7 +15,7 @@
 - ✅ 文本、图像、视频全能适配
 - ✅ 模型持续升级并保持免费
 
-**官方平台：** https://platform.agnes-ai.com
+**官方平台：** <a href="https://platform.agnes-ai.com" target="_blank">https://platform.agnes-ai.com</a>
 
 ---
 
@@ -53,7 +53,7 @@
 
 无需下载，直接访问 **Agnes 创意空间** 在线使用：
 
-**🔗 https://ailabing.cn/tools/agnes-creative-space/**
+**🔗 <a href="https://ailabing.cn/tools/agnes-creative-space/" target="_blank">https://ailabing.cn/tools/agnes-creative-space/</a>**
 
 **功能：**
 - ✨ **生成模式**：文生图、图生图、文生视频、图生视频
@@ -91,7 +91,7 @@
 
 直接查阅 Agnes AI 官方文档，获取最新、最完整的接口信息：
 
-**🔗 https://agnes-ai.com/doc/overview**
+**🔗 <a href="https://agnes-ai.com/doc/overview" target="_blank">https://agnes-ai.com/doc/overview</a>**
 
 官方文档涵盖：
 - 概述与核心能力
@@ -111,7 +111,7 @@
 - **SKILL.md**：每次被 Agent 加载时，Agent 会检查 GitHub 最新 commit，有更新则在回复开头提醒用户
 
 **手动检查更新方式：**
-1. 访问 GitHub 仓库查看最新 commit：https://github.com/imsancn/agnes-ai-skill
+1. 访问 GitHub 仓库查看最新 commit：<a href="https://github.com/imsancn/agnes-ai-skill" target="_blank">https://github.com/imsancn/agnes-ai-skill</a>
 2. 或直接让 Agent 执行：`请检查 Agnes AI 支持 Skill 是否有更新`
 
 ---
@@ -148,26 +148,26 @@ Headers:
 
 | 资源 | 链接 |
 |------|------|
-| 官方平台 | https://platform.agnes-ai.com |
-| 官方文档 | https://agnes-ai.com/doc/overview |
-| 操作手册 | https://agnes-ai.com/doc/常用接入文档 |
-| 视频文档 | https://agnes-ai.com/doc/agnes-video-v20 |
-| OpenClaw 接入 | https://agnes-ai.com/doc/cid1 |
-| Hermes 接入 | https://agnes-ai.com/doc/cid2 |
-| Claude CLI 接入 | https://agnes-ai.com/doc/cid3 |
-| Claude Desktop 接入 | https://agnes-ai.com/doc/cid4 |
-| WorkBuddy 接入 | https://agnes-ai.com/doc/cid5 |
-| Cherry Studio 接入 | https://agnes-ai.com/doc/cid6 |
-| Opencode 接入 | https://agnes-ai.com/doc/cid7 |
-| Codex++ 接入 | https://agnes-ai.com/doc/cid8 |
-| 常见问题 QA | https://icn1d2hdv39m.feishu.cn/wiki/R7TEwjadJibD62kWeS9cubtpnPi |
+| 官方平台 | <a href="https://platform.agnes-ai.com" target="_blank">https://platform.agnes-ai.com</a> |
+| 官方文档 | <a href="https://agnes-ai.com/doc/overview" target="_blank">https://agnes-ai.com/doc/overview</a> |
+| 操作手册 | <a href="https://agnes-ai.com/doc/常用接入文档" target="_blank">https://agnes-ai.com/doc/常用接入文档</a> |
+| 视频文档 | <a href="https://agnes-ai.com/doc/agnes-video-v20" target="_blank">https://agnes-ai.com/doc/agnes-video-v20</a> |
+| OpenClaw 接入 | <a href="https://agnes-ai.com/doc/cid1" target="_blank">https://agnes-ai.com/doc/cid1</a> |
+| Hermes 接入 | <a href="https://agnes-ai.com/doc/cid2" target="_blank">https://agnes-ai.com/doc/cid2</a> |
+| Claude CLI 接入 | <a href="https://agnes-ai.com/doc/cid3" target="_blank">https://agnes-ai.com/doc/cid3</a> |
+| Claude Desktop 接入 | <a href="https://agnes-ai.com/doc/cid4" target="_blank">https://agnes-ai.com/doc/cid4</a> |
+| WorkBuddy 接入 | <a href="https://agnes-ai.com/doc/cid5" target="_blank">https://agnes-ai.com/doc/cid5</a> |
+| Cherry Studio 接入 | <a href="https://agnes-ai.com/doc/cid6" target="_blank">https://agnes-ai.com/doc/cid6</a> |
+| Opencode 接入 | <a href="https://agnes-ai.com/doc/cid7" target="_blank">https://agnes-ai.com/doc/cid7</a> |
+| Codex++ 接入 | <a href="https://agnes-ai.com/doc/cid8" target="_blank">https://agnes-ai.com/doc/cid8</a> |
+| 常见问题 QA | <a href="https://icn1d2hdv39m.feishu.cn/wiki/R7TEwjadJibD62kWeS9cubtpnPi" target="_blank">https://icn1d2hdv39m.feishu.cn/wiki/R7TEwjadJibD62kWeS9cubtpnPi</a> |
 | 支持邮箱 | support@agnes-ai.com |
 
 ---
 
 ## 🔄 版本历史
 
-查看 [Releases](https://github.com/imsancn/agnes-ai-skill/releases) 页面获取完整版本历史与更新说明。
+查看 <a href="https://github.com/imsancn/agnes-ai-skill/releases" target="_blank">Releases</a> 页面获取完整版本历史与更新说明。
 
 ---
 
@@ -175,8 +175,8 @@ Headers:
 
 本仓库基于以下两个项目修改整合而成：
 
-1. [lj1270998580-crypto/Agnes-help-skill](https://github.com/lj1270998580-crypto/Agnes-help-skill) — 原始 Skill 框架与文档
-2. [cnskycn/agnes-api-skill](https://github.com/cnskycn/agnes-api-skill) — 视频查询必须用 video_id、num_frames 10 个合法值、中文 Prompt 警告等重要参数修正
+1. <a href="https://github.com/lj1270998580-crypto/Agnes-help-skill" target="_blank">lj1270998580-crypto/Agnes-help-skill</a> — 原始 Skill 框架与文档
+2. <a href="https://github.com/cnskycn/agnes-api-skill" target="_blank">cnskycn/agnes-api-skill</a> — 视频查询必须用 video_id、num_frames 10 个合法值、中文 Prompt 警告等重要参数修正
 
 在原始版本基础上进行了以下定制：
 
