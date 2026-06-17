@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "prompt": "我调用 Agnes AI 的图像生成接口返回 400 错误，请求体是 {\"model\":\"agnes-image-2.1-flash\",\"prompt\":\"a cat\",\"size\":\"1024x1024\",\"image\":\"https://example.com/cat.jpg\"}，帮我排查问题",
+    "expected": "识别出 image 参数放在了顶层而非 extra_body 中，给出正确的请求体格式"
+  },
+  {
+    "id": 2,
+    "prompt": "帮我用 Agnes AI 生成一个 5 秒的产品展示视频，然后查询结果",
+    "expected": "选择 agnes-video-v2.0 模型，设置 num_frames=121 + frame_rate=24，提交后用 video_id（非 task_id）轮询查询"
+  },
+  {
+    "id": 3,
+    "prompt": "我想在 OpenClaw 中接入 Agnes AI，怎么配置？另外 agnes-2.0-flash 的 Thinking 模式怎么开？",
+    "expected": "提供 OpenClaw 配置步骤（Base URL + API Key + 模型名），说明 Thinking 模式通过 chat_template_kwargs.enable_thinking: true 启用"
+  }
+]
