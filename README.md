@@ -45,7 +45,7 @@
 
 **📋 一键安装（复制发给 Agent）：**
 ```
-请读取并安装 Agnes AI 支持 Skill：https://github.com/lj1270998580-crypto/Agnes-help-skill
+请读取并安装 Agnes AI 支持 Skill：https://github.com/imsancn/agnes-ai-skill
 ```
 
 安装完成后，只需配置 Agnes API Key 即可使用。告诉 Agent"我要生图""我要生视频"，Agent 会自动判断并执行。
@@ -138,7 +138,7 @@ Headers:
 
 > 一图看懂：如何安装 Skill、如何用 Skill 生图/生视频、如何用 Skill 接入工具、如何用 Skill 排查问题
 
-![Agnes Help Skill 教程信息图](https://raw.githubusercontent.com/lj1270998580-crypto/Agnes-help-skill/main/assets/agnes-help-skill-tutorial.png)
+![Agnes Help Skill 教程信息图](https://raw.githubusercontent.com/imsancn/agnes-ai-skill/main/assets/agnes-help-skill-tutorial.png)
 
 ---
 
@@ -163,22 +163,9 @@ Headers:
 
 ---
 
-## 🔄 更新记录
+## 🔄 版本历史
 
-| 日期 | 更新内容 |
-|------|----------|
-| 2026-06-17 | **v1.5.0** — 吸收 cnskycn/agnes-api-skill 优点：新增工作流决策树 / 视频音频说明 / 完整轮询代码示例 / 视频完成响应示例 / 本地图片处理 / 参数推荐场景表 / 中文 Prompt 三种缓解方法 |
-| 2026-06-17 | **v1.4.0** — Darwin Skill 优化（57.5→78 分）+ 重要参数修正：video_id 必须查询 / num_frames 10 个合法值 / 中文 Prompt 警告 / 章节编号修复 / 11 个显性检查点 / 反例黑名单 / 失败模式分支式 |
-| 2026-06-17 | **v1.3.0** — 版本号升级至 v1.3.0，包含所有自定义修改：移除 `agnes-1.5-flash`、`agnes-2.0-flash` 默认启用 Thinking 模式、`default-enabled: true` |
-| 2026-06-17 | 自定义修改版完整备份至 `D:\home\MateHome\备份文件\agnes-ai-support\`（含 SKILL.md、README.md、API文档、HTML、assets），备份包含所有定制修改（移除 1.5-flash、Thinking 默认启用、default-enabled:true） |
-| 2026-06-13 | 新增 **Agnes 创意空间**（https://ailabing.cn/tools/agnes-creative-space/）为**方式二**，支持在线生成（文生图/图生图/文生视频/图生视频）和对话模式自助排查问题 |
-| 2026-06-10 | 隐藏社区 Skill 推荐（可能未及时更新），仅保留本仓库官方维护的内容 |
-| 2026-06-09 | Skill 改为**方式一（⭐ 推荐）**，新增 Agnes Help Skill **教程信息图**和完整**使用说明**（生图/生视频、接入工具、排查问题三大场景） |
-| 2026-06-08 | Agnes-2.0-Flash 上下文窗口回退：官方从 1M 回退至 **256K**（Context 1M → 256K，Max Output 1M → 65.5K），此前 1M 支持因稳定性问题已回退 |
-| 2026-06-07 | 精简触发词列表，新增 **Prompt 模板库**章节（文生图/图生图/视频/文本模板） |
-| 2026-06-06 | 修复图生图 `image` 参数位置：必须放在 `extra_body` 中，不能放请求体顶层（官方文档错误修正） |
-| 2026-06-06 | 补充 Codex++ 官方接入指南（区分 GUI 工具与 CLI 工具） |
-| 2026-06-06 | 初始版本：整合官方文档、创建交互式 HTML 助手、编写通用 Skill |
+查看 [Releases](https://github.com/imsancn/agnes-ai-skill/releases) 页面获取完整版本历史与更新说明。
 
 ---
 
