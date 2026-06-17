@@ -24,7 +24,6 @@
 | 文件 | 说明 | 用途 |
 |------|------|------|
 | `agnes-ai-assistant.html` | 交互式接入助手 | 浏览器打开，自助完成接入、排查问题（**自动检查 GitHub 更新**） |
-| `agnes-ai-api-documentation.md` | 完整 API 文档 | 整合官方全部接口信息，供 Agent 读取（**带版本号**） |
 | `SKILL.md` | 通用支持 Skill | 兼容 OpenClaw / Claude Code / Claude Desktop / Hermes / Codex / WorkBuddy / Cherry Studio / Opencode / Kimi Work（**加载时检查更新**） |
 
 ---
@@ -90,12 +89,16 @@
 
 ### 方式四：API 文档（推荐 Agent / 开发者）
 
-`agnes-ai-api-documentation.md` 整合了 Agnes AI 官方文档的全部内容：
+直接查阅 Agnes AI 官方文档，获取最新、最完整的接口信息：
 
+**🔗 https://agnes-ai.com/doc/overview**
+
+官方文档涵盖：
 - 概述与核心能力
-- Agnes 1.5 Flash / 2.0 Flash 完整参数与示例
+- Agnes 2.0 Flash 完整参数与示例
 - Agnes Image 2.0 / 2.1 Flash 完整参数与示例
 - Agnes Video V2.0 完整参数与示例（含异步轮询）
+- 各工具链接入指南（OpenClaw / Hermes / Claude CLI / Cherry Studio 等）
 - 隐私政策与服务条款
 
 ---
@@ -106,7 +109,6 @@
 
 - **HTML 助手**：每次打开页面时自动检查 GitHub 是否有新版本，有更新则显示顶部横幅提醒
 - **SKILL.md**：每次被 Agent 加载时，Agent 会检查 GitHub 最新 commit，有更新则在回复开头提醒用户
-- **API 文档**：文件头部标注版本号，建议定期同步最新版
 
 **手动检查更新方式：**
 1. 访问 GitHub 仓库查看最新 commit：https://github.com/imsancn/agnes-ai-skill
