@@ -167,6 +167,7 @@ Headers:
 
 | 日期 | 更新内容 |
 |------|----------|
+| 2026-06-17 | **v1.4.0** — Darwin Skill 优化（57.5→78 分）+ 重要参数修正：video_id 必须查询 / num_frames 10 个合法值 / 中文 Prompt 警告 / 章节编号修复 / 11 个显性检查点 / 反例黑名单 / 失败模式分支式 |
 | 2026-06-17 | **v1.3.0** — 版本号升级至 v1.3.0，包含所有自定义修改：移除 `agnes-1.5-flash`、`agnes-2.0-flash` 默认启用 Thinking 模式、`default-enabled: true` |
 | 2026-06-17 | 自定义修改版完整备份至 `D:\home\MateHome\备份文件\agnes-ai-support\`（含 SKILL.md、README.md、API文档、HTML、assets），备份包含所有定制修改（移除 1.5-flash、Thinking 默认启用、default-enabled:true） |
 | 2026-06-13 | 新增 **Agnes 创意空间**（https://ailabing.cn/tools/agnes-creative-space/）为**方式二**，支持在线生成（文生图/图生图/文生视频/图生视频）和对话模式自助排查问题 |
@@ -182,13 +183,20 @@ Headers:
 
 ## 📎 来源声明
 
-本仓库基于 [lj1270998580-crypto/Agnes-help-skill](https://github.com/lj1270998580-crypto/Agnes-help-skill) 修改，在原始版本基础上进行了以下定制：
+本仓库基于以下两个项目修改整合而成：
+
+1. [lj1270998580-crypto/Agnes-help-skill](https://github.com/lj1270998580-crypto/Agnes-help-skill) — 原始 Skill 框架与文档
+2. [cnskycn/agnes-api-skill](https://github.com/cnskycn/agnes-api-skill) — 视频查询必须用 video_id、num_frames 10 个合法值、中文 Prompt 警告等重要参数修正
+
+在原始版本基础上进行了以下定制：
 
 - 移除 `agnes-1.5-flash` 模型引用
 - `agnes-2.0-flash` 默认启用 Thinking 模式
 - 设置 `default-enabled: true` 以默认激活 Skill
+- Darwin Skill 9 维度评分优化（57.5→78 分）
+- 整合 cnskycn/agnes-api-skill 的重要参数修正
 
-原始仓库版权归原作者所有，本仓库仅作个人定制使用。如有问题请参考[原仓库](https://github.com/lj1270998580-crypto/Agnes-help-skill)。
+原始仓库版权归原作者所有，本仓库仅作个人定制使用。
 
 ---
 
