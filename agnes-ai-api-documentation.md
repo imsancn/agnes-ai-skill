@@ -1422,8 +1422,14 @@ width integer 否 视频宽度，默认
 值 1152
 num_frames integer 否
 视频帧数，必
-须 ≤ 441 ，且
-满足 8n + 1
+须 ≤ 441 ，仅
+支持 10 个合法
+值：81, 121, 161,
+201, 241, 281,
+321, 361, 401,
+441（非法值会导
+致任务卡在队列
+永不执行）
 frame_rate number 否 视频FPS，支持
 范围为 1–60
 num_inference_steps integer 否 推理步数
@@ -1603,7 +1609,7 @@ Agnes Video V2.0 支持通过 num_frames 和 frame_rate 控制视频时长。
 num_frames  表示生成的视频总帧数；
 frame_rate  表示视频帧率，即每秒播放多少帧；
 num_frames  必须小于或等于 441 ；
-num_frames  必须满足 8n + 1 ；
+num_frames  仅支持 10 个合法值：81 、121 、161 、201 、241 、281 、321 、361 、401 、441（必须满足 8n + 1 且 ≥ 81，非法值会导致任务卡在队列永不执行）；
 frame_rate  支持范围为 1–60 。
 ### 任务状态说明
 ### 视频时长控制
@@ -1666,11 +1672,12 @@ second $0 / second
 视频生成是异步任务；
 需要先### 创建视频任务，再查询视频结果；
 ### 创建任务响应中会同时返回 task_id  和 video_id ；
-新接入点使用建议 video_id  查询视频结果；
-旧版本 task_id  查询接口仍然支持；
+🔴 必须使用 video_id  查询视频结果（GET /agnesapi?video_id=<ID>）；
+❌ 禁止使用 task_id  查询（会导致排队异常延长超过5分钟）；
 video_url  仅在 status  为时 completed  可用；
 num_frames  必须小于或等于 441 ；
-num_frames  必须满足 8n + 1 ，例如 81 、121 、161 、241  或 441 ；
+num_frames  仅支持 10 个合法值：81 、121 、161 、201 、241 、281 、321 、361 、401 、441（非法值会导致任务卡在队列永不执行）；
+🔴 视频 Prompt 建议用英文；中文会导致视频出现英文字母/语音，如必须用中文请加 "NO English text" 约束；
 ### 错误码
 ### ### 价格
 ### 注意事项
