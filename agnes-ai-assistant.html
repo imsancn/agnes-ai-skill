@@ -189,7 +189,7 @@
     <div id="update-banner" class="update-banner" style="display:none;">
       <span>📢 <strong>有新版本可用！</strong> 当前版本 <span id="local-ver"></span>，GitHub 已更新。建议下载最新版以获得完整功能。</span>
       <div>
-        <a href="https://github.com/lj1270998580-crypto/Agnes-help-skill" target="_blank">查看更新 →</a>
+        <a href="https://github.com/imsancn/agnes-ai-skill" target="_blank">查看更新 →</a>
         <button class="close-btn" onclick="dismissUpdate()">×</button>
       </div>
     </div>
@@ -747,8 +747,8 @@ async function callWithRetry(fn, maxRetries = 3) {
 
   // Diagnose
   // ===== 版本检查与更新提醒 =====
-  const LOCAL_VERSION = '1.4.0';
-  const GITHUB_REPO = 'lj1270998580-crypto/Agnes-help-skill';
+  const LOCAL_VERSION = '1.5.0';
+  const GITHUB_REPO = 'imsancn/agnes-ai-skill';
   const GITHUB_API = `https://api.github.com/repos/${GITHUB_REPO}/commits?path=agnes-ai-assistant.html&per_page=1`;
   const STORAGE_KEY = 'agnes_assistant_last_commit';
 
