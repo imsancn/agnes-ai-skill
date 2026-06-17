@@ -167,6 +167,7 @@ Headers:
 
 | 日期 | 更新内容 |
 |------|----------|
+| 2026-06-17 | **v1.5.0** — 吸收 cnskycn/agnes-api-skill 优点：新增工作流决策树 / 视频音频说明 / 完整轮询代码示例 / 视频完成响应示例 / 本地图片处理 / 参数推荐场景表 / 中文 Prompt 三种缓解方法 |
 | 2026-06-17 | **v1.4.0** — Darwin Skill 优化（57.5→78 分）+ 重要参数修正：video_id 必须查询 / num_frames 10 个合法值 / 中文 Prompt 警告 / 章节编号修复 / 11 个显性检查点 / 反例黑名单 / 失败模式分支式 |
 | 2026-06-17 | **v1.3.0** — 版本号升级至 v1.3.0，包含所有自定义修改：移除 `agnes-1.5-flash`、`agnes-2.0-flash` 默认启用 Thinking 模式、`default-enabled: true` |
 | 2026-06-17 | 自定义修改版完整备份至 `D:\home\MateHome\备份文件\agnes-ai-support\`（含 SKILL.md、README.md、API文档、HTML、assets），备份包含所有定制修改（移除 1.5-flash、Thinking 默认启用、default-enabled:true） |
