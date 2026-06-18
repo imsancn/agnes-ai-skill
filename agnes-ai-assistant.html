@@ -317,7 +317,7 @@ Headers:
           <table>
             <tr><td>端点</td><td><code>/v1/images/generations</code></td></tr>
             <tr><td>能力</td><td>文生图、图生图、多图合成</td></tr>
-            <tr><td>尺寸</td><td>1024x768 / 1024x1024 / 768x1024</td></tr>
+            <tr><td>尺寸</td><td>1024x768 / 1024x1024 / 768x1024 / 3840x2160（4K）</td></tr>
             <tr><td>输入</td><td>公网 URL 或 Data URI Base64</td></tr>
             <tr><td>输出</td><td>URL 或 Base64</td></tr>
             <tr><td>价格</td><td>$0.003 / image <span class="badge badge-green">现价 $0</span></td></tr>
@@ -328,7 +328,7 @@ Headers:
           <table>
             <tr><td>端点</td><td><code>/v1/images/generations</code></td></tr>
             <tr><td>升级点</td><td>高信息密度、结构保持、复杂场景</td></tr>
-            <tr><td>尺寸</td><td>支持自定义，如 1024x768</td></tr>
+            <tr><td>尺寸</td><td>支持自定义，如 1024x768 / 3840x2160（4K）</td></tr>
             <tr><td>价格</td><td>$0.003 / image <span class="badge badge-green">现价 $0</span></td></tr>
           </table>
           <div class="tip-box">2.1 是 2.0 的升级版，新用户建议直接用 2.1</div>
@@ -747,7 +747,7 @@ async function callWithRetry(fn, maxRetries = 3) {
 
   // Diagnose
   // ===== 版本检查与更新提醒 =====
-  const LOCAL_VERSION = '1.7.0';
+  const LOCAL_VERSION = '1.8.0';
   const GITHUB_REPO = 'imsancn/agnes-ai-skill';
   const GITHUB_API = `https://api.github.com/repos/${GITHUB_REPO}/commits?path=agnes-ai-assistant.html&per_page=1`;
   const STORAGE_KEY = 'agnes_assistant_last_commit';
@@ -839,7 +839,7 @@ async function callWithRetry(fn, maxRetries = 3) {
         <li>图生图不需要传 tags: ["img2img"]</li>
         <li>Data URI Base64 格式：data:image/png;base64,BASE64_HERE</li>
         <li>增加客户端超时到 60-360s</li>
-        <li>检查 size 格式：1024x768 / 1024x1024 / 768x1024</li>
+        <li>检查 size 格式：1024x768 / 1024x1024 / 768x1024 / 3840x2160（4K）</li>
       </ol>`,
     stream: `<div class="alert alert-warn"><strong>🌊 流式输出异常排查</strong></div>
       <ol style="font-size:14px; line-height:2; margin-left:20px;">
