@@ -1,6 +1,6 @@
 ---
 name: agnes-ai-support
-version: "1.8.0"
+version: "1.9.0"
 description: |
   Agnes AI API 接入支持与问题排查 Skill。帮助新用户完成 Agnes AI API 的接入配置，
   诊断和解决接入过程中遇到的认证、参数、响应、图像生成、视频生成等各类问题。
@@ -15,7 +15,7 @@ default-enabled: true
 
 # Agnes AI API 接入支持与问题排查
 
-> **Skill 版本：** v1.8.0
+> **Skill 版本：** v1.9.0
 > **适用工具：** OpenClaw / Claude Code / Claude Desktop / Hermes / Codex / WorkBuddy / Cherry Studio / Opencode / Kimi Work
 > **更新日期：** 2026-06-06
 > **GitHub 仓库：** https://github.com/imsancn/agnes-ai-skill
@@ -276,7 +276,7 @@ curl https://apihub.agnes-ai.com/v1/chat/completions \
 - 图生图必填：`model` + `prompt` + `size` + `extra_body.image` → 缺 `extra_body.image` → **🔴 STOP：image 必须放在 extra_body 中，不能放顶层！放顶层必 400**
 - **response_format 必须放在 `extra_body` 中** → 放根级 → 400，移入 `extra_body` 重试
 - 图生图**不需要**传 `tags: ["img2img"]` → 传了可能出错 → 删除该参数
-- `size` 格式错误 → 接受 `1024x768` / `1024x1024` / `768x1024` / `3840x2160`（4K）等 → 改为正确格式重试
+- `size` 格式错误 → 见下方尺寸列表 → 改为正确格式重试
 
 **视频模型 400 → 按以下分支排查：**
 - 必填：`model` + `prompt` → 缺任一项 → 补齐后重试
@@ -531,9 +531,21 @@ while True:
 - 端点：`POST /v1/images/generations`
 - 必填：model, prompt, size
 - 图生图必填：`extra_body.image`（URL 数组或 Data URI Base64，**必须放在 extra_body 中！**）
-- size：1024x768 / 1024x1024 / 768x1024 / 3840x2160（4K）
+- size：见下方尺寸表
 - 输出：URL 或 Base64
 - 价格：$0.003/image（**现价 $0，RPM ≤ 20**）
+
+**图像尺寸表：**
+
+> 💡 **默认使用 1K 分辨率**（`1024x768` / `1024x1024` / `768x1024`），仅当用户明确要求高清时才使用 2K/4K。
+
+| 比例 | 1K（默认） | 2K | 4K | 说明 |
+|------|-----------|-----|-----|------|
+| 4:3 | 1024x768 | — | — | 标准横版 |
+| 1:1 | 1024x1024 | — | — | 正方形 |
+| 3:4 | 768x1024 | — | — | 标准竖版 |
+| 16:9 | — | 2560x1440 | 3840x2160 | 宽屏横版 |
+| 9:16 | — | 1440x2560 | 2160x3840 | 宽屏竖版 |
 
 ### agnes-video-v2.0
 - 创建：`POST /v1/videos`
@@ -610,7 +622,7 @@ while True:
 
 ### 图像
 - [ ] 模型名称正确（推荐 2.1）
-- [ ] 文生图传 model + prompt + size（支持 1024x768 / 1024x1024 / 768x1024 / 3840x2160 4K）
+- [ ] 文生图传 model + prompt + size（支持多种比例与分辨率，见尺寸表）
 - [ ] 图生图传了 `extra_body.image` 数组（**不能放顶层！**）
 - [ ] response_format 在 extra_body 中
 - [ ] 未传 tags: ["img2img"]
