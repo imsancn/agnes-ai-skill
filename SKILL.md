@@ -1,6 +1,6 @@
 ---
 name: agnes-ai-support
-version: "1.9.0"
+version: "2.0.0"
 description: |
   Agnes AI API 接入支持与问题排查 Skill。帮助新用户完成 Agnes AI API 的接入配置，
   诊断和解决接入过程中遇到的认证、参数、响应、图像生成、视频生成等各类问题。
@@ -9,13 +9,13 @@ description: |
   触发词：Agnes AI、agnes、接入、API Key、401、400、排查、错误、视频生成、图像生成、
   thinking、stream、tool calling、模型选择、Base URL、响应格式、timeout、超时、轮询、
   FAQ、问题排查、调试、免费调用、RPM、video_id、task_id、Prompt 模板、提示词、
-  生图、生视频、图生图、文生图、图生视频、文生视频。
+  生图、生视频、图生图、文生图、图生视频、文生视频、灰度自检、1M 上下文、4K 图片、4K 图、4K、灰度、自检。
 default-enabled: true
 ---
 
 # Agnes AI API 接入支持与问题排查
 
-> **Skill 版本：** v1.9.0
+> **Skill 版本：** v2.0.0
 > **适用工具：** OpenClaw / Claude Code / Claude Desktop / Hermes / Codex / WorkBuddy / Cherry Studio / Opencode / Kimi Work
 > **更新日期：** 2026-06-06
 > **GitHub 仓库：** https://github.com/imsancn/agnes-ai-skill
@@ -376,6 +376,8 @@ curl https://apihub.agnes-ai.com/v1/chat/completions \
 4. 执行函数后，以 `role: tool` 回传结果
 5. 模型根据工具结果生成最终回复
 
+> ⚠️ **Responses API 多轮函数调用不可靠**：Agnes 的 Responses API 多轮 function calling 不适用于 Agent 自动工具循环。实测表明 provider 可能在 `status=completed` 时返回 `function_call`，而使用 `function_call_output` + `previous_response_id` 提交可能失败。建议使用 Chat Completions 路径进行工具调用，将 Responses API 的 function calling 仅视为尽力而为的请求格式兼容。
+
 ### 3.4 视频长度调节
 
 **公式：** `seconds = num_frames / frame_rate`
@@ -685,6 +687,151 @@ while True:
 - 定期轮换 API Key
 - 监控异常用量
 
+### 灰度自检（检查你的账户是否支持 1M 上下文和 4K 图片）
+
+> Agnes AI 正在灰度测试以下能力：
+> - **1M Token 超长上下文**：约 50% 概率已开放
+> - **4K 图片生成**：约 20% 概率已开放
+>
+> 触发条件：当用户问"灰度自检"、"是否有1M上下文"、"能生成4K图吗"、"4K图片"等时，执行以下测试。
+>
+> **⚠️ 重要：这些测试是"尽力而为"的方法，结果仅供参考。灰度分配是动态的，可能随时变化。**
+
+---
+
+**测试 1：1M 上下文自检**
+
+> **原理**：需要发送超过 256K tokens 的文本。如果 API 成功返回 → 支持 1M；如果返回 413/400（上下文过长）→ 当前不支持。
+>
+> **注意**：英文文本约 1 token ≈ 4 字符，因此要超过 256K tokens，需要发送 **约 1M+ 字符** 的 payload。这是一个较大的请求体，可能受客户端/服务端请求大小限制。
+
+**curl 方法**（示例文本较短，实际测试需要更大payload，推荐用 Python 方法）：
+```bash
+# 此示例payload较小，仅展示调用方式
+# 实际测试需要约 1M+ 字符的文本才能超过 256K tokens
+
+curl https://apihub.agnes-ai.com/v1/chat/completions \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "agnes-2.0-flash",
+    "messages": [
+      {"role": "system", "content": "You are a helpful assistant."},
+      {"role": "user", "content": "（此处需要放入约 1M+ 字符的文本）"}
+    ],
+    "max_tokens": 10
+  }'
+```
+
+**Python 方法（推荐）**：
+```python
+import requests
+
+key = "YOUR_API_KEY"
+
+# 生成约 1.2M 字符（约 300K tokens，超过 256K 边界）
+# 注意：实际 token 数取决于 tokenizer，但 1.2M 字符应足够超过 256K tokens
+sentence = "Hello world this is a test for long context window capability. "
+test_text = sentence * 20000  # 约 1.2M 字符
+
+print(f"测试文本长度: {len(test_text)} 字符")
+
+try:
+    resp = requests.post(
+        "https://apihub.agnes-ai.com/v1/chat/completions",
+        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
+        json={
+            "model": "agnes-2.0-flash",
+            "messages": [
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": test_text}
+            ],
+            "max_tokens": 10
+        },
+        timeout=60
+    )
+
+    if resp.status_code == 200:
+        print("✅ 支持 1M 上下文（当前在灰度名单内）")
+    elif resp.status_code == 413 or resp.status_code == 400:
+        error_msg = resp.json().get("error", {}).get("message", resp.text[:200])
+        if "context" in error_msg.lower() or "length" in error_msg.lower() or "too long" in error_msg.lower():
+            print(f"❌ 当前不支持 1M 上下文（灰度未命中）：{error_msg}")
+        else:
+            print(f"⚠️ 请求失败（非上下文问题）：{resp.status_code} {error_msg}")
+    else:
+        print(f"⚠️ 请求失败：{resp.status_code} {resp.text[:200]}")
+except Exception as e:
+    print(f"⚠️ 请求异常（可能是payload过大导致客户端限制）：{e}")
+```
+
+---
+
+**测试 2：4K 图片自检**
+
+> **原理**：直接尝试生成 4096x4096 尺寸的图片。如果 API 成功返回图片 URL → 支持 4K；如果返回 400（尺寸不支持）→ 当前不支持。
+>
+> **注意**：如果返回 400，需检查错误消息确认是"尺寸不支持"还是其他参数错误。也可能因模型暂不支持该尺寸而返回失败。
+
+```bash
+# 尝试生成 4K 尺寸图片
+curl https://apihub.agnes-ai.com/v1/images/generations \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "agnes-image-2.1-flash",
+    "prompt": "A beautiful landscape with mountains and lake, 4K ultra HD",
+    "size": "4096x4096",
+    "extra_body": {"response_format": "url"}
+  }'
+```
+
+Python 方法：
+```python
+import requests
+
+key = "YOUR_API_KEY"
+
+resp = requests.post(
+    "https://apihub.agnes-ai.com/v1/images/generations",
+    headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
+    json={
+        "model": "agnes-image-2.1-flash",
+        "prompt": "A beautiful landscape with mountains and lake, 4K ultra HD",
+        "size": "4096x4096",
+        "extra_body": {"response_format": "url"}
+    }
+)
+
+if resp.status_code == 200:
+    data = resp.json()
+    if "data" in data and len(data["data"]) > 0 and data["data"][0].get("url"):
+        print("✅ 支持 4K 图片生成（当前在灰度名单内）")
+    else:
+        print("⚠️ 请求成功但无图片返回，请检查参数")
+elif resp.status_code == 400:
+    error_msg = resp.json().get("error", {}).get("message", resp.text[:200])
+    if "size" in error_msg.lower() or "dimension" in error_msg.lower() or "4096" in error_msg.lower():
+        print(f"❌ 当前不支持 4K 图片（灰度未命中）：{error_msg}")
+    else:
+        print(f"⚠️ 请求失败（非尺寸问题）：400 {error_msg}")
+else:
+    print(f"⚠️ 请求失败：{resp.status_code} {resp.text[:200]}")
+```
+
+---
+
+**测试结果解读：**
+
+| 测试 | 成功 | 失败 | 不确定 |
+|------|------|------|--------|
+| 1M 上下文 | ✅ 你的账户已开放 1M 上下文 | ❌ 当前仍为 256K | ⚠️ 请求异常（payload过大或网络问题） |
+| 4K 图片 | ✅ 你的账户已开放 4K 图片 | ❌ 当前最大仍为 1024x1024 | ⚠️ 请求失败（非尺寸问题） |
+
+> **注意：** 灰度是动态分配的，不支持时无需担心，未来会逐步全量开放。以上测试仅供参考，实际以官方公告为准。
+
+---
+
 ### 本地图片处理
 
 当用户提供本地图片路径进行图生图时，处理步骤：
@@ -951,8 +1098,14 @@ python scripts/agnes_api.py video --prompt "Create a smooth transition" --image 
 # 查询视频任务
 python scripts/agnes_api.py video-get task_123456
 
-# 运行测试
+# 运行轻量测试（默认不创建视频）
 python scripts/agnes_api.py smoke-test
+
+# 包含图生图测试
+python scripts/agnes_api.py smoke-test --include-image-edit
+
+# 测试单个视频模式
+python scripts/agnes_api.py smoke-test --video-case text-to-video
 ```
 
 **⚠️ 重要提醒：**
