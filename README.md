@@ -183,8 +183,11 @@ Headers:
 - 移除 `agnes-1.5-flash` 模型引用
 - `agnes-2.0-flash` 默认启用 Thinking 模式
 - 设置 `default-enabled: true` 以默认激活 Skill
-- Darwin Skill 9 维度评分优化（57.5→78 分）
+- Darwin Skill 9 维度评分优化（57.5→78→81.6 分）
 - 整合 cnskycn/agnes-api-skill 的重要参数修正
+- 整合 lj1270998580-crypto/Agnes-help-skill 灰度自检功能（1M 上下文 + 4K 图片自检）
+- 整合 Yacey/agnes-ai-generation-skill（Responses API 警告、smoke-test 详情）
+- 新增触发词：灰度自检、1M 上下文、4K 图片等
 
 原始仓库版权归原作者所有，本仓库仅作个人定制使用。
 
