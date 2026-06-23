@@ -175,9 +175,18 @@ Headers:
 
 本仓库基于以下两个项目修改整合而成：
 
-1. <a href="https://github.com/lj1270998580-crypto/Agnes-help-skill" target="_blank">lj1270998580-crypto/Agnes-help-skill</a> — 原始 Skill 框架与文档等
-2. <a href="https://github.com/cnskycn/agnes-api-skill" target="_blank">cnskycn/agnes-api-skill</a> — 中文 Prompt 警告等重要参数修正
-2. <a href="https://github.com/Yacey/agnes-ai-generation-skill" target="_blank">Yacey/agnes-ai-generation-skill</a> — Responses API 多轮函数调用警告 等
+1. <a href="https://github.com/lj1270998580-crypto/Agnes-help-skill" target="_blank">lj1270998580-crypto/Agnes-help-skill</a> — 原始 Skill 框架与文档
+2. <a href="https://github.com/cnskycn/agnes-api-skill" target="_blank">cnskycn/agnes-api-skill</a> — 视频查询必须用 video_id、num_frames 10 个合法值、中文 Prompt 警告等重要参数修正
+
+在原始版本基础上进行了以下定制：
+
+- 移除 `agnes-1.5-flash` 模型引用
+- `agnes-2.0-flash` 默认启用 Thinking 模式
+- 设置 `default-enabled: true` 以默认激活 Skill
+- Darwin Skill 9 维度评分优化（57.5→78 分）
+- 整合 cnskycn/agnes-api-skill 的重要参数修正
+- 同步上游：Context 512K、Max Output 64K、4K 图片已全面支持、1M 上下文灰度自检
+- 图像默认 9:16 2K 分辨率，移除 1:1 比例
 
 原始仓库版权归原作者所有，本仓库仅作个人定制使用。
 
