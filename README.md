@@ -149,6 +149,8 @@ Headers:
 | 资源 | 链接 |
 |------|------|
 | 官方平台 | <a href="https://platform.agnes-ai.com" target="_blank">https://platform.agnes-ai.com</a> |
+| 官方 GitHub | <a href="https://github.com/AgnesAI-Labs/Agnes-AI" target="_blank">https://github.com/AgnesAI-Labs/Agnes-AI</a> |
+| 官方模型目录 | <a href="https://github.com/AgnesAI-Labs/Agnes-AI/blob/main/MODEL_CATALOG.md" target="_blank">MODEL_CATALOG.md</a>（RPM / 配额 / 模型规格） |
 | 官方文档 | <a href="https://agnes-ai.com/doc/overview" target="_blank">https://agnes-ai.com/doc/overview</a> |
 | 操作手册 | <a href="https://agnes-ai.com/doc/常用接入文档" target="_blank">https://agnes-ai.com/doc/常用接入文档</a> |
 | 视频文档 | <a href="https://agnes-ai.com/doc/agnes-video-v20" target="_blank">https://agnes-ai.com/doc/agnes-video-v20</a> |
@@ -173,20 +175,11 @@ Headers:
 
 ## 📎 来源声明
 
-本仓库基于以下两个项目修改整合而成：
+本仓库基于以下项目修改整合而成：
 
 1. <a href="https://github.com/lj1270998580-crypto/Agnes-help-skill" target="_blank">lj1270998580-crypto/Agnes-help-skill</a> — 原始 Skill 框架与文档
-2. <a href="https://github.com/cnskycn/agnes-api-skill" target="_blank">cnskycn/agnes-api-skill</a> — 视频查询必须用 video_id、num_frames 10 个合法值、中文 Prompt 警告等重要参数修正
-
-在原始版本基础上进行了以下定制：
-
-- 移除 `agnes-1.5-flash` 模型引用
-- `agnes-2.0-flash` 默认启用 Thinking 模式
-- 设置 `default-enabled: true` 以默认激活 Skill
-- Darwin Skill 9 维度评分优化（57.5→78 分）
-- 整合 cnskycn/agnes-api-skill 的重要参数修正
-- 同步上游：Context 512K、Max Output 64K、4K 图片已全面支持、1M 上下文灰度自检
-- 图像默认 9:16 2K 分辨率，移除 1:1 比例
+2. <a href="https://github.com/cnskycn/agnes-api-skill" target="_blank">cnskycn/agnes-api-skill</a> — 重要参数修正
+3. <a href="https://github.com/AgnesAI-Labs/Agnes-AI" target="_blank">AgnesAI-Labs/Agnes-AI</a> — 官方模型目录与 RPM 参考
 
 原始仓库版权归原作者所有，本仓库仅作个人定制使用。
 
