@@ -304,8 +304,8 @@ Headers:
           <div class="card-title"><span class="badge badge-purple">文本+</span> agnes-2.0-flash <span class="badge badge-green">Thinking 默认开启</span></div>
           <table>
             <tr><td>端点</td><td><code>/v1/chat/completions</code></td></tr>
-            <tr><td>Context</td><td>256K</td></tr>
-            <tr><td>Max Output</td><td>65.5K</td></tr>
+            <tr><td>Context</td><td>512K</td></tr>
+            <tr><td>Max Output</td><td>64K</td></tr>
             <tr><td>特殊能力</td><td>工具调用、Thinking（默认开启）、图片理解、流式</td></tr>
             <tr><td>价格(Input)</td><td>$0.1 / 1M tokens <span class="badge badge-green">现价 $0</span></td></tr>
             <tr><td>价格(Output)</td><td>$0.2 / 1M tokens <span class="badge badge-green">现价 $0</span></td></tr>
@@ -317,7 +317,7 @@ Headers:
           <table>
             <tr><td>端点</td><td><code>/v1/images/generations</code></td></tr>
             <tr><td>能力</td><td>文生图、图生图、多图合成</td></tr>
-            <tr><td>尺寸</td><td>默认 1K：1024x768 / 1024x1024 / 768x1024｜2K：2560x1440 / 1440x2560｜4K：3840x2160 / 2160x3840</td></tr>
+            <tr><td>尺寸</td><td>默认 9:16 2K：1440x2560｜4:3/3:4：1024x768 / 768x1024｜16:9 2K：2560x1440｜4K：3840x2160 / 2160x3840</td></tr>
             <tr><td>输入</td><td>公网 URL 或 Data URI Base64</td></tr>
             <tr><td>输出</td><td>URL 或 Base64</td></tr>
             <tr><td>价格</td><td>$0.003 / image <span class="badge badge-green">现价 $0</span></td></tr>
@@ -328,7 +328,7 @@ Headers:
           <table>
             <tr><td>端点</td><td><code>/v1/images/generations</code></td></tr>
             <tr><td>升级点</td><td>高信息密度、结构保持、复杂场景</td></tr>
-            <tr><td>尺寸</td><td>支持自定义，默认 1K（1024x768），可选 2K/4K</td></tr>
+            <tr><td>尺寸</td><td>支持自定义，默认 9:16 2K（1440x2560），可选 4K</td></tr>
             <tr><td>价格</td><td>$0.003 / image <span class="badge badge-green">现价 $0</span></td></tr>
           </table>
           <div class="tip-box">2.1 是 2.0 的升级版，新用户建议直接用 2.1</div>
@@ -747,7 +747,7 @@ async function callWithRetry(fn, maxRetries = 3) {
 
   // Diagnose
   // ===== 版本检查与更新提醒 =====
-  const LOCAL_VERSION = '1.9.0';
+  const LOCAL_VERSION = '2.1.0';
   const GITHUB_REPO = 'imsancn/agnes-ai-skill';
   const GITHUB_API = `https://api.github.com/repos/${GITHUB_REPO}/commits?path=agnes-ai-assistant.html&per_page=1`;
   const STORAGE_KEY = 'agnes_assistant_last_commit';
@@ -839,7 +839,7 @@ async function callWithRetry(fn, maxRetries = 3) {
         <li>图生图不需要传 tags: ["img2img"]</li>
         <li>Data URI Base64 格式：data:image/png;base64,BASE64_HERE</li>
         <li>增加客户端超时到 60-360s</li>
-        <li>检查 size 格式：默认 1K（1024x768 / 1024x1024 / 768x1024），2K/4K 见尺寸表</li>
+        <li>检查 size 格式：默认 9:16 2K（1440x2560），4:3/3:4：1024x768 / 768x1024，16:9 2K/4K 见尺寸表</li>
       </ol>`,
     stream: `<div class="alert alert-warn"><strong>🌊 流式输出异常排查</strong></div>
       <ol style="font-size:14px; line-height:2; margin-left:20px;">
