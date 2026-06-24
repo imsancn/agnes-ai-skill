@@ -304,7 +304,7 @@ Headers:
           <div class="card-title"><span class="badge badge-purple">文本+</span> agnes-2.0-flash <span class="badge badge-green">Thinking 默认开启</span></div>
           <table>
             <tr><td>端点</td><td><code>/v1/chat/completions</code></td></tr>
-            <tr><td>Context</td><td>512K</td></tr>
+            <tr><td>Context</td><td>512K <small style="color:#e67e22">⚠️ 内测，官方文档仍为 256K，遇错误回退 256K</small></td></tr>
             <tr><td>Max Output</td><td>64K</td></tr>
             <tr><td>特殊能力</td><td>工具调用、Thinking（默认开启）、图片理解、流式</td></tr>
             <tr><td>价格(Input)</td><td>$0.1 / 1M tokens <span class="badge badge-green">现价 $0</span></td></tr>
@@ -525,13 +525,22 @@ Headers:
       <div class="card">
         <table>
           <tr><th>状态码</th><th>含义</th><th>常见原因</th><th>解决方案</th></tr>
-          <tr><td><span class="badge badge-red">400</span></td><td>请求无效</td><td>参数错误、JSON 格式问题、必填项缺失</td><td>检查请求体格式、参数类型、必填字段</td></tr>
-          <tr><td><span class="badge badge-red">401</span></td><td>未授权</td><td>API Key 错误、过期、格式不对</td><td>检查 Authorization 头，确认 Key 有效</td></tr>
-          <tr><td><span class="badge badge-red">404</span></td><td>不存在</td><td>视频/任务 ID 不存在、URL 路径错误</td><td>确认 ID 正确，检查端点路径</td></tr>
+          <tr><td><span class="badge badge-red">400</span></td><td>请求参数错误</td><td>JSON格式错误、必填缺失、上下文超限、图片/视频参数异常</td><td>检查JSON与必填参数，压缩上下文，核对尺寸、帧率等</td></tr>
+          <tr><td><span class="badge badge-red">401</span></td><td>鉴权失败</td><td>API Key 错误/过期/未正确配置</td><td>检查 Bearer 格式，确认 Key 有效</td></tr>
+          <tr><td><span class="badge badge-red">402</span></td><td>余额/额度不足</td><td>余额不足、Token Plan 额度不足</td><td>检查余额、Token Plan，充值或升级</td></tr>
+          <tr><td><span class="badge badge-red">403</span></td><td>无访问权限</td><td>未开通模型权限、IP/地区受限</td><td>确认账号与模型权限，更换网络后重试</td></tr>
+          <tr><td><span class="badge badge-red">404</span></td><td>接口/资源不存在</td><td>Base URL错误、路径错误、模型名错误</td><td>检查 Base URL、路径、模型名</td></tr>
+          <tr><td><span class="badge badge-amber">408</span></td><td>请求超时</td><td>网络不稳定、请求过大、客户端超时过短</td><td>重试，缩短输入，增加超时</td></tr>
+          <tr><td><span class="badge badge-red">413</span></td><td>请求体过大</td><td>上下文过长、Base64图片过大</td><td>压缩请求内容，减少上下文，优先用公网URL</td></tr>
+          <tr><td><span class="badge badge-red">422</span></td><td>参数不合法</td><td>参数值异常、尺寸/帧率超范围、URL无法访问</td><td>查看具体报错，检查参数范围和URL可访问性</td></tr>
           <tr><td><span class="badge badge-red">429</span></td><td>速率限制</td><td>请求过于频繁，超出 RPM 限制</td><td>降低请求频率，实现退避重试</td></tr>
-          <tr><td><span class="badge badge-red">500</span></td><td>服务器错误</td><td>服务端内部异常</td><td>稍后重试，如持续出现请联系支持</td></tr>
-          <tr><td><span class="badge badge-amber">503</span></td><td>服务繁忙</td><td>服务负载高或维护中</td><td>等待后重试，关注状态公告</td></tr>
+          <tr><td><span class="badge badge-red">500</span></td><td>服务器内部错误</td><td>请求参数异常触发服务异常</td><td>检查参数，确认尺寸符合要求，稍后重试</td></tr>
+          <tr><td><span class="badge badge-amber">502</span></td><td>网关错误</td><td>网络异常、DNS异常、代理配置异常</td><td>检查网络和代理配置，更换网络</td></tr>
+          <tr><td><span class="badge badge-amber">503</span></td><td>服务暂时不可用</td><td>模型名错误、路由配置异常、服务负载高</td><td>检查模型名，选择兜底模型，稍后重试</td></tr>
+          <tr><td><span class="badge badge-amber">504</span></td><td>网关等待上游超时</td><td>长上下文/图片/视频任务耗时过长</td><td>缩短输入，降低生成规格，减少并发</td></tr>
+          <tr><td><span class="badge badge-amber">520</span></td><td>未知网关错误</td><td>网络链路异常、上游服务临时波动</td><td>退避重试，检查网络、代理和DNS</td></tr>
         </table>
+        <p style="margin-top:12px;color:var(--muted);font-size:13px">📋 排查无效？<a href="https://github.com/AgnesAI-Labs/Agnes-AI/issues" target="_blank" style="color:var(--accent)">GitHub Issues（推荐）</a> · <a href="https://github.com/users/AgnesAI-Labs/projects/1" target="_blank" style="color:var(--accent)">反馈进度看板</a> · <a href="mailto:support@agnes-ai.com" style="color:var(--accent)">support@agnes-ai.com</a></p>
       </div>
       <div class="card">
         <div class="card-title">🔄 推荐重试策略</div>
