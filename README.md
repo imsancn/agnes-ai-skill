@@ -163,11 +163,19 @@ Headers:
 | Opencode 接入 | <a href="https://agnes-ai.com/doc/cid7" target="_blank">https://agnes-ai.com/doc/cid7</a> |
 | Codex++ 接入 | <a href="https://agnes-ai.com/doc/cid8" target="_blank">https://agnes-ai.com/doc/cid8</a> |
 | 常见问题 QA | <a href="https://icn1d2hdv39m.feishu.cn/wiki/R7TEwjadJibD62kWeS9cubtpnPi" target="_blank">https://icn1d2hdv39m.feishu.cn/wiki/R7TEwjadJibD62kWeS9cubtpnPi</a> |
+| 官方反馈（GitHub Issues） | <a href="https://github.com/AgnesAI-Labs/Agnes-AI/issues" target="_blank">https://github.com/AgnesAI-Labs/Agnes-AI/issues</a> |
+| 反馈进度看板 | <a href="https://github.com/users/AgnesAI-Labs/projects/1" target="_blank">https://github.com/users/AgnesAI-Labs/projects/1</a> |
 | 支持邮箱 | support@agnes-ai.com |
 
 ---
 
 ## 🔄 版本历史
+
+| 版本 | 日期 | 更新内容 |
+|------|------|----------|
+| v2.3.0 | 2026-06-24 | 版本检查升级为5步流程；新增官方问题反馈渠道；新增 API 错误码参考（22个状态码）；常见错误速查表增加反馈引导；触发词增加反馈/错误码 |
+| v2.2.0 | 2026-06-23 | 新增「访问与限制」章节（RPM速查表+订阅配额）；增加官方GitHub链接；来源声明精简 |
+| v2.1.0 | 2026-06-22 | 512K Context + 64K Max Output + 4K图片全面支持；图像默认9:16 2K分辨率；移除1:1比例 |
 
 查看 <a href="https://github.com/imsancn/agnes-ai-skill/releases" target="_blank">Releases</a> 页面获取完整版本历史与更新说明。
 
