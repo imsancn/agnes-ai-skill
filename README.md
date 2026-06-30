@@ -1,8 +1,10 @@
-# Agnes AI 帮助中心
+# Agnes AI 帮助中心 — Token Plan 优化版
+
+> 🎯 **本仓库是基于 Token Plan 的优化版本**：支持 Free / Starter（默认） / Plus / Pro 四档位一键切换，AI 自动按你的档位调整所有 RPM、配额和使用建议。相比原版，RPM 和配额信息更精确，推荐参数更实用。
 
 > Agnes AI，让世界级 AI 属于每一个人。
 
-本仓库是 Agnes AI API 的**非官方帮助资源集合**，包含交互式接入助手、完整 API 文档、以及通用支持 Skill，帮助开发者快速接入 Agnes AI 全模态 API（文本、图像、视频）。
+本仓库是 Agnes AI API 的**非官方帮助资源集合**（基于 Token Plan 优化），包含交互式接入助手、完整 API 文档、以及通用支持 Skill，帮助开发者快速接入 Agnes AI 全模态 API（文本、图像、视频）。
 
 ---
 
