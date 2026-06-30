@@ -15,7 +15,7 @@ default-enabled: true
 
 # Agnes AI API 接入支持与问题排查
 
-> **Skill 版本：** v2.5.0
+> **Skill 版本：** v2.6.0
 > **适用工具：** OpenClaw / Claude Code / Claude Desktop / Hermes / Codex / WorkBuddy / Cherry Studio / Opencode / Kimi Work
 > **更新日期：** 2026-06-30
 > **GitHub 仓库：** https://github.com/imsancn/agnes-ai-skill
@@ -66,6 +66,35 @@ user_tier: starter
 3. 在回复 RPM/配额相关问题时，使用对应档位的数值（而非固定值）
 4. 如果用户未配置，默认使用 `starter` 档位参数
 
+### 如何切换默认档位
+
+安装本 Skill 后，默认档位为 `starter`。如果你的 Token Plan 订阅不是 Starter，需要手动切换：
+
+**方法一：直接告诉 AI**
+> 「把我的档位切换到 Plus」或「我的档位是 Free」
+
+AI 会自动修改 SKILL.md 中的 `user_tier` 配置，无需你手动编辑文件。
+
+**方法二：手动编辑 SKILL.md**
+1. 打开本 Skill 的 SKILL.md 文件
+2. 找到头部的 `user_tier: starter` 这一行
+3. 将 `starter` 改为你的实际档位（`free` / `plus` / `pro`）
+4. 保存文件，下次对话即生效
+
+**方法三：HTML 助手切换**
+如果你使用 HTML 助手页面，在侧边栏的「档位」下拉框中选择即可，设置会自动保存到 `localStorage`。
+
+> 💡 **提示**：切换后无需重启，下次对话时 AI 会读取最新配置。如果不确定自己的档位，可访问 [Agnes AI Token Plan](https://agnes-ai.com/pricing) 查看。
+
+### 订阅变更后如何更新档位
+
+如果用户的 Token Plan 订阅发生变化（升级或降级），需要更新档位配置：
+
+1. **确认用户的实际档位**：询问用户当前订阅的是 Free / Starter / Plus / Pro 哪一档
+2. **修改 SKILL.md 头部配置**：将 `user_tier` 改为用户实际档位，例如 `user_tier: plus`
+3. **如果用户使用 HTML 助手**：提醒用户在 HTML 助手侧边栏的档位下拉框中同步切换
+4. **验证生效**：修改后，AI 在后续回复中将自动使用新档位的 RPM 和配额参数
+
 ---
 
 ## 版本检查与更新提醒
@@ -79,7 +108,7 @@ user_tier: starter
    https://api.github.com/repos/imsancn/agnes-ai-skill/commits?per_page=1
    ```
 
-2. 比较远程最新 commit 的 `sha` 与本地记录的版本（当前 `v2.5.0`）。
+2. 比较远程最新 commit 的 `sha` 与本地记录的版本（当前 `v2.6.0`）。
 
 3. 如果 `sha` 不匹配 → 说明有新版本，继续步骤 2。
 
@@ -99,7 +128,7 @@ https://raw.githubusercontent.com/imsancn/agnes-ai-skill/main/README.md
 
 > 📢 **本 Skill 有新版本可用！**
 > 
-> **当前版本：** v2.5.0（您的版本）
+> **当前版本：** v2.6.0（您的版本）
 > **最新版本：** [远程版本号]
 > 
 > **本次更新内容：**
@@ -130,6 +159,16 @@ https://raw.githubusercontent.com/imsancn/agnes-ai-skill/main/README.md
 
 如果用户正在使用 HTML 助手或 API 文档，同样提醒：
 > 检测到 HTML 助手 / API 文档也有更新，建议从仓库下载最新版。
+
+---
+
+### 版本发布规则
+
+**本 Skill 不会主动发布新版本到 GitHub。** 任何涉及版本号的修改（功能更新、配置调整等），必须：
+1. 先在本地完成所有修改
+2. 向用户报告修改内容和变更摘要
+3. 等待用户明确确认「发布」或「推送」后，才执行 GitHub 推送和 Release 发布
+4. 用户未确认时，仅保留本地修改，不自动推送
 
 ---
 
