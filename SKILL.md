@@ -1,6 +1,6 @@
 ---
 name: agnes-ai-support
-version: "2.4.0"
+version: "2.5.0"
 description: |
   Agnes AI API 接入支持与问题排查 Skill。帮助新用户完成 Agnes AI API 的接入配置，
   诊断和解决接入过程中遇到的认证、参数、响应、图像生成、视频生成等各类问题。
@@ -15,7 +15,7 @@ default-enabled: true
 
 # Agnes AI API 接入支持与问题排查
 
-> **Skill 版本：** v2.4.0
+> **Skill 版本：** v2.5.0
 > **适用工具：** OpenClaw / Claude Code / Claude Desktop / Hermes / Codex / WorkBuddy / Cherry Studio / Opencode / Kimi Work
 > **更新日期：** 2026-06-30
 > **GitHub 仓库：** https://github.com/imsancn/agnes-ai-skill
@@ -30,6 +30,44 @@ default-enabled: true
 
 ---
 
+## ⚙️ 用户档位配置
+
+> **根据你的 Token Plan 订阅档位修改下方配置，AI 会据此调整所有 RPM、配额和使用建议。**
+> 本 Skill 默认假设 **Starter** 档位（$4/月，推荐个人用户）。
+
+**配置方法：** 将下方 `user_tier` 改为你的实际档位即可。
+
+```
+# === 用户档位配置 ===
+# 可选值：free | starter | plus | pro
+# 默认值：starter
+user_tier: starter
+```
+
+### 各档位参数速查
+
+| 参数 | Free | Starter ⭐ | Plus | Pro |
+|------|------|-----------|------|-----|
+| 月费 | $0 | $4 | $10 | $50 |
+| 文本 RPM（实际可执行） | 20 | 1,000 | 1,000 | 1,000 |
+| 图像 1K RPM | 20 | 100 | 100 | 100 |
+| 图像 2K RPM | 10 | 80 | 80 | 80 |
+| 视频 RPM（实际可执行） | 1 | 5 | 5 | 5 |
+| 文本配额 | 无限 | 1,500 次/5小时；15,000 次/周 | 7,500 次/5小时；75,000 次/周 | 30,000 次/5小时；300,000 次/周 |
+| 图像配额 | 无限 | 4,000 张/天 | 4,000 张/天 | 4,000 张/天 |
+| 视频配额 | 无限 | 500 秒/天 | 500 秒/天 | 500 秒/天 |
+| 429 退避建议 | ≥ 3s | ≥ 1s | ≥ 1s | ≥ 1s |
+
+> ⭐ **Starter 是推荐默认档位**：$4/月即可获得文本 RPM 1,000（Free 的 50 倍）、视频 RPM 5、1,500 请求/5小时、4,000 张图/天、500 秒视频/天。
+
+**AI 行为规则：**
+1. 读取 `user_tier` 配置值
+2. 根据 `user_tier` 查上表获取对应的 RPM 和配额参数
+3. 在回复 RPM/配额相关问题时，使用对应档位的数值（而非固定值）
+4. 如果用户未配置，默认使用 `starter` 档位参数
+
+---
+
 ## 版本检查与更新提醒
 
 **每次加载本 Skill 时，请执行以下检查：**
@@ -41,7 +79,7 @@ default-enabled: true
    https://api.github.com/repos/imsancn/agnes-ai-skill/commits?per_page=1
    ```
 
-2. 比较远程最新 commit 的 `sha` 与本地记录的版本（当前 `v2.4.0`）。
+2. 比较远程最新 commit 的 `sha` 与本地记录的版本（当前 `v2.5.0`）。
 
 3. 如果 `sha` 不匹配 → 说明有新版本，继续步骤 2。
 
@@ -61,7 +99,7 @@ https://raw.githubusercontent.com/imsancn/agnes-ai-skill/main/README.md
 
 > 📢 **本 Skill 有新版本可用！**
 > 
-> **当前版本：** v2.4.0（您的版本）
+> **当前版本：** v2.5.0（您的版本）
 > **最新版本：** [远程版本号]
 > 
 > **本次更新内容：**
