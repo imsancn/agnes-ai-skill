@@ -52,6 +52,18 @@
 
 安装完成后，只需配置 Agnes API Key 即可使用。告诉 Agent"我要生图""我要生视频"，Agent 会自动判断并执行。
 
+**⚙️ 切换档位设置**
+
+Skill 默认档位为 **Starter**（$4/月，推荐个人用户）。如果你的 Token Plan 订阅不是 Starter，可通过以下方式切换：
+
+| 方式 | 操作 | 适用场景 |
+|------|------|----------|
+| **告诉 AI** | 直接说「把我的档位切换到 Plus」或「我的档位是 Free」 | ⭐ 最简单，AI 自动修改配置 |
+| **手动编辑** | 打开 `SKILL.md`，找到 `user_tier: starter` 改为 `free` / `plus` / `pro`，保存即可 | 不想依赖 AI 或离线环境 |
+| **HTML 助手** | 在侧边栏「档位」下拉框中选择，自动保存 | 使用 HTML 助手页面时 |
+
+> 💡 切换后无需重启，下次对话时 AI 会读取最新配置。不确定自己的档位？查看 <a href="https://agnes-ai.com/pricing" target="_blank">Agnes AI Token Plan</a>
+
 ### 方式二：Agnes 创意空间（推荐自助创作与排查）
 
 无需下载，直接访问 **Agnes 创意空间** 在线使用：
