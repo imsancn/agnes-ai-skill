@@ -304,8 +304,8 @@ Headers:
           <div class="card-title"><span class="badge badge-purple">文本+</span> agnes-2.0-flash <span class="badge badge-green">Thinking 默认开启</span></div>
           <table>
             <tr><td>端点</td><td><code>/v1/chat/completions</code></td></tr>
-            <tr><td>Context</td><td>512K <small style="color:#e67e22">⚠️ 内测，官方文档仍为 256K，遇错误回退 256K</small></td></tr>
-            <tr><td>Max Output</td><td>64K</td></tr>
+            <tr><td>Context</td><td>512K <small style="color:#e67e22">⚠️ 官方文档页面已标注，MODEL_CATALOG.md 仍为 256K 并声明 1M 已回滚</small></td></tr>
+            <tr><td>Max Output</td><td>65.5K</td></tr>
             <tr><td>特殊能力</td><td>工具调用、Thinking（默认开启）、图片理解、流式</td></tr>
             <tr><td>价格(Input)</td><td>$0.1 / 1M tokens <span class="badge badge-green">现价 $0</span></td></tr>
             <tr><td>价格(Output)</td><td>$0.2 / 1M tokens <span class="badge badge-green">现价 $0</span></td></tr>
@@ -373,7 +373,7 @@ Headers:
         <div id="gen-params">
           <div class="param-row"><label>模型</label><select id="p-model"><option>agnes-2.0-flash</option></select></div>
           <div class="param-row"><label>温度</label><input type="number" id="p-temp" value="0.7" min="0" max="2" step="0.1"></div>
-          <div class="param-row"><label>Max Tokens</label><input type="number" id="p-max" value="1024" min="1" max="65536"></div>
+          <div class="param-row"><label>Max Tokens</label><input type="number" id="p-max" value="1024" min="1" max="67072"></div>
           <div class="param-row"><label>Prompt</label><input type="text" id="p-prompt" value="Hello, how are you?"></div>
         </div>
       </div>
@@ -491,7 +491,7 @@ Headers:
       <h3>🔐 认证与账户</h3>
       <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">401 Unauthorized 怎么办？<span class="faq-toggle">+</span></div><div class="faq-a">1. 检查 API Key 是否正确（Bearer 后有空格）<br>2. 确认 Key 未过期或被删除<br>3. 检查 Header 拼写：<code>Authorization: Bearer YOUR_KEY</code><br>4. 确认账户有余额（注册送 $0.1）</div></div>
       <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">API Key 泄露了怎么办？<span class="faq-toggle">+</span></div><div class="faq-a">立即进入控制台 <code>Settings → API Keys</code> 删除旧 Key 并创建新 Key。检查代码仓库历史记录，使用 git filter-repo 或 BFG 清理敏感信息。</div></div>
-      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">免费额度用完了还能用吗？<span class="faq-toggle">+</span></div><div class="faq-a">当前所有模型均为 <span class="badge badge-green">$0 现价</span>，免费账户调用免费模型不扣费，但有 RPM（每分钟请求数）限制。如需更高并发，请充值。</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">免费额度用完了还能用吗？<span class="faq-toggle">+</span></div><div class="faq-a">当前所有模型均为 <span class="badge badge-green">$0 现价</span>，免费账户调用免费模型不扣费，但有 RPM（每分钟请求数）限制。Free: 文本/图像 RPM 20，视频 RPM 1。<strong>推荐订阅 Starter $4/月</strong>，文本 RPM 提升至 1,000，视频 RPM 提升至 5，还包含 1,500 请求/5小时、4,000 张图/天、500 秒视频/天的配额。</div></div>
 
       <h3>💬 文本模型</h3>
       <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">如何开启 Thinking 模式？<span class="faq-toggle">+</span></div><div class="faq-a">OpenAI 格式加 <code>chat_template_kwargs.enable_thinking: true</code>；Anthropic 格式加 <code>thinking: {type:"enabled", budget_tokens:2048}</code>。详见左侧「Thinking 模式」页面。</div></div>
@@ -533,7 +533,7 @@ Headers:
           <tr><td><span class="badge badge-amber">408</span></td><td>请求超时</td><td>网络不稳定、请求过大、客户端超时过短</td><td>重试，缩短输入，增加超时</td></tr>
           <tr><td><span class="badge badge-red">413</span></td><td>请求体过大</td><td>上下文过长、Base64图片过大</td><td>压缩请求内容，减少上下文，优先用公网URL</td></tr>
           <tr><td><span class="badge badge-red">422</span></td><td>参数不合法</td><td>参数值异常、尺寸/帧率超范围、URL无法访问</td><td>查看具体报错，检查参数范围和URL可访问性</td></tr>
-          <tr><td><span class="badge badge-red">429</span></td><td>速率限制</td><td>请求过于频繁，超出 RPM 限制</td><td>降低请求频率，实现退避重试</td></tr>
+          <tr><td><span class="badge badge-red">429</span></td><td>速率限制</td><td>RPM 超限（Free: 文本/图像 20, 视频 1；Starter: 文本 1,000, 视频 5）</td><td>降低请求频率，视频需排队等待，实现退避重试</td></tr>
           <tr><td><span class="badge badge-red">500</span></td><td>服务器内部错误</td><td>请求参数异常触发服务异常</td><td>检查参数，确认尺寸符合要求，稍后重试</td></tr>
           <tr><td><span class="badge badge-amber">502</span></td><td>网关错误</td><td>网络异常、DNS异常、代理配置异常</td><td>检查网络和代理配置，更换网络</td></tr>
           <tr><td><span class="badge badge-amber">503</span></td><td>服务暂时不可用</td><td>模型名错误、路由配置异常、服务负载高</td><td>检查模型名，选择兜底模型，稍后重试</td></tr>
@@ -588,7 +588,7 @@ async function callWithRetry(fn, maxRetries = 3) {
       <div class="card">
         <table>
           <tr><th>功能</th><th>方法</th><th>端点</th><th>模型</th></tr>
-          <tr><td>Chat Completion</td><td>POST</td><td><code>/v1/chat/completions</code></td><td>agnes-1.5/2.0-flash</td></tr>
+          <tr><td>Chat Completion</td><td>POST</td><td><code>/v1/chat/completions</code></td><td>agnes-2.0-flash</td></tr>
           <tr><td>图像生成</td><td>POST</td><td><code>/v1/images/generations</code></td><td>agnes-image-2.0/2.1-flash</td></tr>
           <tr><td>创建视频</td><td>POST</td><td><code>/v1/videos</code></td><td>agnes-video-v2.0</td></tr>
           <tr><td>查询视频(推荐)</td><td>GET</td><td><code>/agnesapi?video_id=&lt;ID&gt;</code></td><td>-</td></tr>
@@ -756,7 +756,7 @@ async function callWithRetry(fn, maxRetries = 3) {
 
   // Diagnose
   // ===== 版本检查与更新提醒 =====
-  const LOCAL_VERSION = '2.2.0';
+  const LOCAL_VERSION = '2.4.0';
   const GITHUB_REPO = 'imsancn/agnes-ai-skill';
   const GITHUB_API = `https://api.github.com/repos/${GITHUB_REPO}/commits?path=agnes-ai-assistant.html&per_page=1`;
   const STORAGE_KEY = 'agnes_assistant_last_commit';
